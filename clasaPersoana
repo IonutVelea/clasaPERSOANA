@@ -1,0 +1,183 @@
+#include "pch.h"
+#include <iostream>
+using namespace std;
+
+class Persoana
+{
+private:
+	char* nume;
+	char* prenume;
+	int AnNastere;
+	int LunaNasterii;
+	int ZiuaDeNastere;
+	char *serie;
+	int numar;
+
+public:
+	Persoana()
+	{
+		this->nume = new char[10];
+		strcpy(this->nume, "Invalid1");
+		this->prenume = new char[10];
+		strcpy(this->prenume, "Invalid2");
+		this->AnNastere = 0;
+		this->LunaNasterii = 0;
+		this->ZiuaDeNastere = 0;
+		this->serie = new char[6];
+		strcpy(this->serie, "Nedefinita");
+		this->numar = 0;
+	}
+
+	Persoana(const char* n, int a)
+	{
+		this->nume = new char[strlen(n) + 1];
+		strcpy(this->nume, n);
+		this->AnNastere = a;
+	}
+
+	Persoana( char* p, int l)
+	{
+		this->prenume = new char[strlen(p) + 1];
+		strcpy(this->prenume, p);
+		this->LunaNasterii = l;
+	}
+
+	Persoana(Persoana &P)
+	{
+		this->nume = new char[strlen(P.nume) + 1];
+		strcpy(this->nume, P.nume);
+		this->prenume = new char[strlen(P.prenume) + 1];
+		strcpy(this->prenume, P.prenume);
+		this->AnNastere = P.AnNastere;
+		this->LunaNasterii = P.LunaNasterii;
+		this->ZiuaDeNastere = P.ZiuaDeNastere;
+		this->serie = new char[strlen(P.serie) + 1];
+		strcpy(this->serie, P.serie);
+		this->numar = P.numar;
+	}
+
+	Persoana& operator = (const Persoana& P)
+	{
+		this->nume = new char[strlen(P.nume) + 1];
+		strcpy(this->nume, P.nume);
+		this->prenume = new char[strlen(P.prenume) + 1];
+		strcpy(this->prenume, P.prenume);
+		this->AnNastere = P.AnNastere;
+		this->LunaNasterii = P.LunaNasterii;
+		this->ZiuaDeNastere = P.ZiuaDeNastere;
+		this->serie = new char[strlen(P.serie) + 1];
+		strcpy(this->serie, P.serie);
+		this->numar = P.numar;
+		return *this;
+	}
+
+	~Persoana()
+	{
+		if (this->nume != NULL)
+		{
+			delete[] this->nume;
+			this->nume = NULL;
+		}
+
+		if (this->prenume != NULL)
+		{
+			delete[] this->prenume;
+			this->prenume = NULL;
+		}
+
+		if (this->serie != NULL)
+		{
+			delete[] this->serie;
+			this->serie = NULL;
+		}
+	}
+
+	void set_nume(const char *n)
+	{
+		delete[] this->nume;
+		this->nume = new char[strlen(n) + 1];
+		strcpy(nume, n);
+	}
+
+	void set_prenume(const char *p)
+	{
+		delete[] this->prenume;
+		this->prenume = new char[strlen(p) + 1];
+		strcpy(prenume, p);
+	}
+
+	void set_AnNastere(int a)
+	{
+		this->AnNastere = a;
+	}
+
+	void set_LunaNasterii(int l)
+	{
+		this->LunaNasterii = l;
+	}
+
+	void set_ZiuaDeNastere(int z)
+	{
+		this->ZiuaDeNastere = z;
+	}
+
+	void set_serie(const char *s)
+	{
+		delete[] this->serie;
+		this->serie = new char[strlen(s) + 1];
+		strcpy(serie, s);
+	}
+
+	void set_numar(int n)
+	{
+		this->numar = n;
+	}
+
+	int varsta(int x)
+	{
+		cout << "Introduceti anul nasterii: ";
+		cin >> this ->AnNastere;
+		x = 2019 - this->AnNastere;
+		return x;
+	}
+
+	void afis()
+	{
+		cout << this->nume << " " << this->prenume << " este nascut la data de: " << this->ZiuaDeNastere << " " << this->LunaNasterii << " " << this->AnNastere << " fiind identificat cu seria: " << this->serie << ", numarul: " << this->numar << endl;
+
+	}
+
+	void afis1()
+	{
+		cout << this->nume << " are anul nasterii: " << this->AnNastere << endl;
+
+	}
+	void afis2()
+	{
+		cout << this->prenume << " este nascut in luna a" << this->LunaNasterii <<" -a"<< endl;
+	}
+	
+};
+
+int main()
+{
+	int varsta;
+	int x;
+	Persoana P;
+	P.afis();
+
+	P.set_nume((char*)"Ion");
+	P.set_AnNastere(1999);
+	P.afis1();
+	cout << varsta(x);
+	
+
+	P.set_prenume((char*)"Mircea");
+	P.set_LunaNasterii(10);
+	P.afis2();
+
+
+
+	
+
+}
